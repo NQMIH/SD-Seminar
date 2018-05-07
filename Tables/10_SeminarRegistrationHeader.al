@@ -63,7 +63,7 @@ table 123456710 "Seminar Registration Header"
         field(4;"Seminar Name";Text[50])
         {
         }
-        field(5;"Instructor Code";Code[10])
+        field(5;"Instructor Resource Code";Code[10])
         {
             TableRelation = Resource where (Type=const(Person));
 
@@ -74,7 +74,7 @@ table 123456710 "Seminar Registration Header"
         }
         field(6;"Instructor Name";Text[50])
         {
-            CalcFormula = Lookup(Resource.Name where ("No."=Field("Instructor Code"),
+            CalcFormula = Lookup(Resource.Name where ("No."=Field("Instructor Resource Code"),
                                                       Type=const(Person)));
             Editable = false;
             FieldClass = FlowField;
@@ -290,6 +290,9 @@ table 123456710 "Seminar Registration Header"
 
     trigger OnDelete();
     begin
+        if (CurrFieldNo>0) then
+            TestField(Status,Status::Canceled);
+
         SeminarRegLine.RESET;
         SeminarRegLine.SETRANGE("Document No.","No.");
         SeminarRegLine.SETRANGE(Registered,true);
@@ -321,11 +324,7 @@ table 123456710 "Seminar Registration Header"
           NoSeriesMgt.InitSeries(SeminarSetup."Seminar Registration Nos.",xRec."No. Series",0D,"No.","No. Series");
         end;
 
-        if "Posting Date" = 0D then
-          "Posting Date" := WORKDATE;
-        "Document Date" := WORKDATE;
-        SeminarSetup.GET;
-        NoSeriesMgt.SetDefaultSeries("Posting No. Series",SeminarSetup."Posted Seminar Reg. Nos.");
+        InitRecord;
     end;
 
     procedure AssistEdit(OldSeminarRegHeader : Record "Seminar Registration Header") : Boolean;
@@ -342,6 +341,14 @@ table 123456710 "Seminar Registration Header"
             exit(true);
           end;
         end;
+    end;
+    local procedure InitRecord();
+    begin
+        if "Posting Date" = 0D then
+            "Posting Date" := WORKDATE;
+        "Document Date" := WORKDATE;
+        SeminarSetup.GET;
+        NoSeriesMgt.SetDefaultSeries("Posting No. Series",SeminarSetup."Posted Seminar Reg. Nos.");        
     end;
 }
 
