@@ -5,6 +5,8 @@ table 123456732 "Seminar Ledger Entry"
     //     - Created new table
 
     Caption = 'Seminar Ledger Entry';
+    LookupPageId="Seminar Ledger Entries";
+    DrillDownPageId="Seminar Ledger Entries";    
 
     fields
     {

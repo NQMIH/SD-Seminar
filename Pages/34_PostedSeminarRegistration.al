@@ -139,6 +139,20 @@ page 123456734 "Posted Seminar Registration"
                     RunPageLink = "Document No."=Field("No.");
                 }
             }
+            action("&Navigate")
+            {
+                Caption='&Navigate';
+                Image=Navigate;
+                Promoted=true;
+                PromotedCategory=Process;
+                trigger OnAction();
+                var
+                Navigate : page Navigate;
+                begin
+                    Navigate.SetDoc("Posting Date","No.");
+                    Navigate.RUN;
+                end;
+            }
         }
     }
 }

@@ -86,7 +86,7 @@ page 123456713 "Seminar Registration List"
                     PromotedIsBig=true;
                     PromotedCategory=Process;
                     ShortcutKey=F9;
-                    //RunObject=codeunit "Seminar-Post (Yes/No)";
+                    RunObject=codeunit "Seminar-Post (Yes/No)";
                 }
             }
         }

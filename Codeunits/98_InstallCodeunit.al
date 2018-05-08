@@ -91,10 +91,10 @@ codeunit 123456798 InstallCodeunit
 
         if SeminarSetup.Modify then;
 
-        // SourceCode.Code := 'SEMINAR';
-        // if SourceCode.Insert then;
-        // SourceCodeSetup.get;
-        // SourceCodeSetup.CSD_Seminar := 'SEMINAR';
-        // SourceCodeSetup.modify;
+         SourceCode.Code := 'SEMINAR';
+         if SourceCode.Insert then;
+         SourceCodeSetup.get;
+         SourceCodeSetup.CSD_Seminar := 'SEMINAR';
+         SourceCodeSetup.modify;
      end;
 }
