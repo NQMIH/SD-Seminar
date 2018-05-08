@@ -15,8 +15,8 @@ codeunit 123456700 "Seminar-Post"
             TestField("Document Date"); 
             TestField("Seminar No.");
             TestField(Duration);
-            TestField("Instructor Resource No.");
-            TestField("Room Resource No."); 
+            TestField("Instructor Resource code");
+            TestField("Room Resource code"); 
             TestField(Status,Status::Closed);
             SeminarRegLine.Reset; 
             SeminarRegLine.SetRange("Document No.","No."); 
@@ -182,10 +182,10 @@ codeunit 123456700 "Seminar-Post"
             SeminarJnlLine."Document Date" := "Document Date";
             SeminarJnlLine."Document No." := PstdSeminarRegHeader."No.";
             SeminarJnlLine."Charge Type" := ChargeType;
-            SeminarJnlLine."Instructor Resource No." := "Instructor Resource No.";
+            SeminarJnlLine."Instructor Resource No." := "Instructor Resource code";
             SeminarJnlLine."Starting Date" := "Starting Date";
             SeminarJnlLine."Seminar Registration No." := PstdSeminarRegHeader."No.";
-            SeminarJnlLine."Room Resource No." := "Room Resource No.";
+            SeminarJnlLine."Room Resource No." := "Room Resource code";
             SeminarJnlLine."Source Type" := SeminarJnlLine."Source Type"::Seminar;
             SeminarJnlLine."Source No." := "Seminar No.";
             SeminarJnlLine."Source Code" := SourceCode;
@@ -194,7 +194,7 @@ codeunit 123456700 "Seminar-Post"
             case ChargeType of 
               ChargeType::Instructor :
                 begin
-                    Instructor.get("Instructor Resource No.");
+                    Instructor.get("Instructor Resource code");
                     SeminarJnlLine.Description := Instructor.Name;
                     SeminarJnlLine.Type := SeminarJnlLine.Type::Resource; 
                     SeminarJnlLine.Chargeable := false; 
@@ -204,7 +204,7 @@ codeunit 123456700 "Seminar-Post"
 
               ChargeType::Room :
                 begin
-                    Room.GET("Room Resource No."); 
+                    Room.GET("Room Resource code"); 
                     SeminarJnlLine.Description := Room.Name; 
                     SeminarJnlLine.Type := SeminarJnlLine.Type::Resource; 
                     SeminarJnlLine.Chargeable := false; 

@@ -9,7 +9,7 @@ page 123456736 "Posted Seminar Reg. List"
     Editable = false;
     PageType = List;
     SourceTable = "Posted Seminar Reg. Header";
-    UsageCategory=Documants;
+    UsageCategory=Documents;
 
     layout
     {
