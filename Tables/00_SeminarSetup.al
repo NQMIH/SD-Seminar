@@ -38,9 +38,6 @@ table 123456700 "Seminar Setup"
         }
     }
     
-    var
-        myInt : Integer;
-
     trigger OnInsert();
     begin
     end;
